@@ -1,11 +1,18 @@
-import { Tabs } from "expo-router";
+import { Feather } from "@expo/vector-icons";
+import { Icon, NativeTabs, VectorIcon } from "expo-router/unstable-native-tabs";
 
 export default function AppLayout() {
- return (
-   <Tabs initialRouteName="dashboard">
-        <Tabs.Screen name="dashboard" options={{ headerShown: false }} />
-        <Tabs.Screen name="chat" options={{ headerShown: false }} />
-        <Tabs.Screen name="profile" options={{ headerShown: false }} />
-   </Tabs>
- );
+  return (
+    <NativeTabs backgroundColor={"#0a0a0a"}>
+      <NativeTabs.Trigger name="dashboard" options={{ title: "Dashboard" }}>
+        <Icon src={<VectorIcon family={Feather} name="home" />} />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="chat" options={{ title: "Chat" }}>
+        <Icon src={<VectorIcon family={Feather} name="message-square" />} />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="profile" options={{ title: "Perfil" }}>
+        <Icon src={<VectorIcon family={Feather} name="user" />} />
+      </NativeTabs.Trigger>
+    </NativeTabs>
+  );
 }

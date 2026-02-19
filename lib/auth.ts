@@ -3,7 +3,7 @@ import { expoClient } from "@better-auth/expo/client";
 import * as SecureStore from "expo-secure-store";
 
 const auth = createAuthClient({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://polish-backend.onrender.com",
   plugins: [
     expoClient({
         scheme: "polish",

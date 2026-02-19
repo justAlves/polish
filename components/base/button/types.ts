@@ -20,6 +20,8 @@ interface IButton {
   readonly withPressAnimation?: boolean;
   readonly animationDuration?: number;
   readonly disabled?: boolean;
+  readonly onPressIn?: () => void;
+  readonly onPressOut?: () => void;
 }
 
 export type { IButton };

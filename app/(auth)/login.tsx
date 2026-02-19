@@ -66,6 +66,9 @@ export default function LoginScreen() {
     }, {
       onError: (error) => {
         console.log("Google Sign-In Error:", error);
+      },
+      onSuccess: () => {
+        router.push("/dashboard");
       }
     })
   }

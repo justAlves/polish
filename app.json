@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "polish",
+    "name": "Polish",
     "slug": "polish",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/app-icon.png",
     "scheme": "polish",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,8 +14,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/app-icon.png",
+        "backgroundColor": "#1D1C1C"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.sahloalves.polish"
@@ -30,14 +30,20 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/app-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#1D1C1C"
         }
       ],
       "expo-font",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

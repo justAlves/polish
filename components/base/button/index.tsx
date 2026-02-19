@@ -26,6 +26,8 @@ export const Button: React.FC<IButton> & React.FunctionComponent<IButton> =
       children,
       isLoading = false,
       onPress,
+      onPressIn: onPressInProp,
+      onPressOut: onPressOutProp,
       width = 200,
       height = 48,
       backgroundColor = "#fff",
@@ -105,12 +107,14 @@ export const Button: React.FC<IButton> & React.FunctionComponent<IButton> =
         if (withPressAnimation && !disabled && !isLoading) {
           scaleValue.value = withTiming(0.95, { duration: 100 });
         }
+        onPressInProp?.();
       };
 
       const handlePressOut = () => {
         if (withPressAnimation && !disabled && !isLoading) {
           scaleValue.value = withTiming(1, { duration: 200 });
         }
+        onPressOutProp?.();
       };
 
       const renderInnerContent = () => (

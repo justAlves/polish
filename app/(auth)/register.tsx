@@ -1,4 +1,5 @@
 import { Button } from "@/components/base/button";
+import { auth } from "@/lib/auth";
 import { Ionicons } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
@@ -47,8 +48,21 @@ export default function RegisterScreen() {
     },
   });
 
+  const { signUp } = auth;
+
   const onSubmit = (data: RegisterFormData) => {
-    console.log("Register form submitted:", data);
+    signUp.email(
+      {
+        email: data.email,
+        password: data.password,
+        name: data.name,
+      },
+      {
+        onSuccess: () => {
+          router.replace("/(app)/dashboard");
+        },
+      },
+    );
   };
 
   return (
