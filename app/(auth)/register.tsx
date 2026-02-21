@@ -50,8 +50,9 @@ export default function RegisterScreen() {
 
   const { signUp } = auth;
 
-  const onSubmit = (data: RegisterFormData) => {
-    signUp.email(
+  const onSubmit = async (data: RegisterFormData) => {
+    console.log("Form data:", data);
+    await signUp.email(
       {
         email: data.email,
         password: data.password,
@@ -60,6 +61,9 @@ export default function RegisterScreen() {
       {
         onSuccess: () => {
           router.replace("/(app)/dashboard");
+        },
+        onError: (error) => {
+          console.error("Registration error:", error);
         },
       },
     );

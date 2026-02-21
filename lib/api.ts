@@ -1,16 +1,23 @@
 import axios from "axios";
+import * as SecureStore from "expo-secure-store";
+import { auth } from "./auth";
+import { currentApiUrl } from "./config";
 
-const API_URLS = {
-  local: "http://192.168.0.14:3000",
-  production: "https://polish-api.onrender.com",
-};
-
-export const currentApiUrl = API_URLS.local;
+const cookies = auth.getCookie();
 
 export const api = axios.create({
   baseURL: currentApiUrl,
-  withCredentials: true,
+  withCredentials: false,
   headers: {
     "Content-Type": "application/json",
+    Cookie: cookies ? cookies : "",
   },
+});
+
+api.interceptors.request.use(async (config) => {
+  const cookie = await SecureStore.getItemAsync("myapp.cookie");
+  if (cookie) {
+    config.headers.Cookie = cookie;
+  }
+  return config;
 });
