@@ -24,7 +24,8 @@
       "distribution": "internal",
       "channel": "main",
       "android": {
-        "image": "latest"
+        "buildType": "apk",
+        "image": "ubuntu-22.04-jdk-17-ndk-r27"
       },
       "ios": {
         "image": "latest"
