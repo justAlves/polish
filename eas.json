@@ -25,7 +25,7 @@
       "channel": "main",
       "android": {
         "buildType": "apk",
-        "image": "ubuntu-22.04-jdk-17-ndk-r27"
+        "image": "sdk-54"
       },
       "ios": {
         "image": "latest"
