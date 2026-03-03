@@ -8,7 +8,7 @@ const auth = createAuthClient({
   plugins: [
     expoClient({
       scheme: "polish",
-      storagePrefix: "myapp",
+      storagePrefix: "polish-auth",
       storage: SecureStore,
     }),
   ],

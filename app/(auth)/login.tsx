@@ -1,6 +1,8 @@
 import { Button } from "@/components/base/button";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useToast } from "@/components/molecules/toast";
+import { auth } from "@/lib/auth";
 import { Ionicons } from "@expo/vector-icons";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -14,8 +16,6 @@ import {
   View,
 } from "react-native";
 import { z } from "zod";
-import { auth } from "@/lib/auth";
-import { useToast } from "@/components/molecules/toast";
 
 const loginSchema = z.object({
   email: z.email("E-mail inválido"),
@@ -43,35 +43,38 @@ export default function LoginScreen() {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    await signIn.email({
-      email: data.email,
-      password: data.password,
-    }, {
-      onError: (error) => {
-        if(error.error.message === "Invalid email or password") {
-          toast.show("E-mail ou senha inválidos", {
-            type: "error",
-            backgroundColor: "#dc2626",
-            position: "top",
-          })
-        }
-      }
-    })
+    await signIn.email(
+      {
+        email: data.email,
+        password: data.password,
+      },
+      {
+        onError: (error) => {
+          if (error.error.message === "Invalid email or password") {
+            toast.show("E-mail ou senha inválidos", {
+              type: "error",
+              backgroundColor: "#dc2626",
+              position: "top",
+            });
+          }
+        },
+      },
+    );
   };
 
   const handleGoogleSignIn = async () => {
-    await signIn.social({
-      provider: "google",
-      callbackURL: "/dashboard"
-    }, {
-      onError: (error) => {
-        console.log("Google Sign-In Error:", error);
+    await signIn.social(
+      {
+        provider: "google",
+        callbackURL: "/dashboard/",
       },
-      onSuccess: () => {
-        router.push("/dashboard");
-      }
-    })
-  }
+      {
+        onError: (error) => {
+          console.log("Google Sign-In Error:", error);
+        },
+      },
+    );
+  };
 
   return (
     <KeyboardAvoidingView
